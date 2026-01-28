@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 2f;
-    [SerializeField, Range(1f, 100f)] float mouseSensitivity;
     public Transform cameraTransform;
 
     private XRIInputActions inputActions;
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * mouseSensitivity * 0.001f;
+        Vector2 mouseDelta = Mouse.current.delta.ReadValue() * Sensi.sens;
 
         cameraPitch -= mouseDelta.y;
         cameraPitch = Mathf.Clamp(cameraPitch, -80f, 80f);
