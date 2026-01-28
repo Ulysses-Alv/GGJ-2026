@@ -1,26 +1,41 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AIEnemy : MonoBehaviour
 {
-    NavMeshAgent agent;
-    Transform player;
-    bool isActive = true;
+    [SerializeField] private float moveSpeed = 3.5f;
+    [SerializeField] private float blindRecoveryTime = 2f;
+
+    private NavMeshAgent agent;
+    private Transform player;
+    private bool isActive = true;
+    private bool isBlinded = false;
+    private float blindTimer = 0f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent.speed = moveSpeed;
 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         AIManager.Instance.SubscribeEnemy(this);
     }
 
     void Update()
     {
-        if (isActive && player != null)
+        if (isActive && !isBlinded && player != null)
         {
             agent.SetDestination(player.position);
+        }
+
+        if (isBlinded)
+        {
+            blindTimer += Time.deltaTime;
+            if (blindTimer >= blindRecoveryTime)
+            {
+                isBlinded = false;
+                agent.isStopped = !isActive;
+            }
         }
     }
 
@@ -32,6 +47,8 @@ public class AIEnemy : MonoBehaviour
 
     public void Blind()
     {
+        isBlinded = true;
         agent.isStopped = true;
+        blindTimer = 0f;
     }
 }
