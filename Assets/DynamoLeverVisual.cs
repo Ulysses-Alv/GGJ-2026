@@ -1,5 +1,6 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
+
 public class DynamoLeverVisual : MonoBehaviour
 {
     public Transform lever;
@@ -27,9 +28,11 @@ public class DynamoLeverVisual : MonoBehaviour
         if (axis == Axis.Y) rotation.y = visualRotationPerImpulse * direction;
         if (axis == Axis.Z) rotation.z = visualRotationPerImpulse * direction;
 
+
         currentTween = lever.DOLocalRotate(
-            transform.localEulerAngles + rotation,
-            duration
+            lever.localEulerAngles + rotation,
+            duration,
+            RotateMode.FastBeyond360
         ).SetEase(Ease.OutCubic);
     }
 }

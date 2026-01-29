@@ -4,10 +4,8 @@ public class DynamoBattery : MonoBehaviour
 {
     [SerializeField] private float maxCharge = 100f;
     [SerializeField] private float decayPerSecond = 5f;
-    [SerializeField] private Light _light;
-    [SerializeField] private float currentCharge;
 
-    [SerializeField] private float maxIntensity = 250f;
+    [SerializeField] private float currentCharge;
 
     void Update()
     {
@@ -15,7 +13,6 @@ public class DynamoBattery : MonoBehaviour
             currentCharge - decayPerSecond * Time.deltaTime,
             0f
         );
-        _light.intensity = Mathf.Lerp(0, maxIntensity, GetNormalizedCharge());
     }
 
     public void AddCharge(float amount)
