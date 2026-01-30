@@ -18,19 +18,24 @@ public class DynamoCore : MonoBehaviour
     [SerializeField] private DynamoBattery battery;
 
     [SerializeField] private float maxIntensity = 250f;
+    [SerializeField] private Light lightSource;
 
-    [SerializeField] private Light _light;
+    [SerializeField] private AnimationCurve curve;
+    [SerializeField] private float idleTimeToEnableLight = 0.35f;
 
     private float angularSpeed;
     private float direction = 1f;
     private float inputTimer;
-
-    [SerializeField] private AnimationCurve curve;
     private float normalizedCharge;
+
+    private float timeSinceLastCharge;
+    private bool addedChargeThisFrame;
 
     void Update()
     {
+        addedChargeThisFrame = false;
         inputTimer -= Time.deltaTime;
+        timeSinceLastCharge += Time.deltaTime;
 
         if (inputTimer <= 0f)
         {
@@ -46,13 +51,32 @@ public class DynamoCore : MonoBehaviour
             float deltaRotation = angularSpeed * direction * Time.deltaTime;
             float energy = Mathf.Abs(deltaRotation) * energyPerDegree;
 
-            battery.AddCharge(energy);
+            if (energy > 0f)
+            {
+                battery.AddCharge(energy);
+                addedChargeThisFrame = true;
+                timeSinceLastCharge = 0f;
+            }
         }
 
         normalizedCharge = battery.GetNormalizedCharge();
-        float curveValue = curve.Evaluate(normalizedCharge);
 
-        _light.intensity = curveValue * maxIntensity;
+        bool canEnableLight =
+            normalizedCharge > 0.4f &&
+            (
+                timeSinceLastCharge >= idleTimeToEnableLight ||
+                (normalizedCharge >= 0.9f && !addedChargeThisFrame)
+            );
+
+        if (canEnableLight)
+        {
+            float curveValue = curve.Evaluate(normalizedCharge);
+            lightSource.intensity = curveValue * maxIntensity;
+        }
+        else
+        {
+            lightSource.intensity = 0f;
+        }
     }
 
     public void AddImpulse(bool isRight = true)
@@ -72,36 +96,9 @@ public class DynamoCore : MonoBehaviour
     {
         return angularSpeed / maxAngularSpeed;
     }
-    public bool isActiveLight()
+
+    public bool IsLightActive()
     {
-        return normalizedCharge > 0.4f;
-    }
-}
-
-
-public class RaycastLight : MonoBehaviour
-{
-    [SerializeField] private DynamoCore dynamoCore;
-    [SerializeField] private float rayDistance = 10f;
-    [SerializeField] private string[] targetTags;
-
-    private RaycastHit[] hits;
-
-    private void Update()
-    {
-        if (!dynamoCore.isActiveLight()) return;
-
-        hits = Physics.RaycastAll(transform.position, transform.forward, rayDistance);
-
-        foreach (var hit in hits)
-        {
-            for (int i = 0; i < targetTags.Length; i++)
-            {
-                if (hit.collider.CompareTag(targetTags[i]))
-                {
-
-                }
-            }
-        }
+        return lightSource.intensity > 0f;
     }
 }

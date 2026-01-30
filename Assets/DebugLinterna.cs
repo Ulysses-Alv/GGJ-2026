@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DebugLinterna : MonoBehaviour {
+public class DebugLinterna : MonoBehaviour
+{
 
     public DynamoCore core;
     public DynamoLeverVisual DynamoLeverVisual;
@@ -10,7 +11,7 @@ public class DebugLinterna : MonoBehaviour {
 
     private void Awake()
     {
-        inputActions = new XRIInputActions();        
+        inputActions = new XRIInputActions();
     }
 
     private void OnEnable()
@@ -21,7 +22,6 @@ public class DebugLinterna : MonoBehaviour {
 
     private void OnRotate(InputAction.CallbackContext context)
     {
-        core.AddImpulse();
         DynamoLeverVisual.PlayImpulse();
     }
 

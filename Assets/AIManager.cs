@@ -1,10 +1,25 @@
+
 using System.Collections.Generic;
 using UnityEngine;
+
+
+public enum IAState
+{
+    Imitating,
+    Chasing,
+    InactiveImitating,
+    Inactive
+}
+
 
 public class AIManager : MonoBehaviour
 {
     public static AIManager Instance { get; private set; }
+
     private readonly List<AIEnemy> enemies = new();
+
+    private AIEnemy activeChasingEnemy;
+    private AIEnemy inactiveEnemy;
 
     void Awake()
     {
@@ -18,7 +33,7 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    public void SubscribeEnemy(AIEnemy enemy)
+    public void RegisterEnemy(AIEnemy enemy)
     {
         if (!enemies.Contains(enemy))
         {
@@ -26,11 +41,41 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    public void SetAllEnemiesActive(bool active)
+    public void TryActivateEnemy(AIEnemy enemy)
     {
-        foreach (var enemy in enemies)
+        if (activeChasingEnemy != null)
+            return;
+
+        if (inactiveEnemy != null)
         {
-            enemy.SetActive(active);
+            inactiveEnemy.SetState(IAState.Imitating);
+            inactiveEnemy = null;
+        }
+
+        activeChasingEnemy = enemy;
+
+        foreach (var e in enemies)
+        {
+            if (e == enemy)
+                e.SetState(IAState.Chasing);
+            else
+                e.SetState(IAState.InactiveImitating);
+        }
+    }
+
+    public void SetEnemyInactive(AIEnemy enemy)
+    {
+        if (enemy != activeChasingEnemy)
+            return;
+
+        enemy.SetState(IAState.Inactive);
+        inactiveEnemy = enemy;
+        activeChasingEnemy = null;
+
+        foreach (var e in enemies)
+        {
+            if (e != inactiveEnemy)
+                e.SetState(IAState.Imitating);
         }
     }
 }

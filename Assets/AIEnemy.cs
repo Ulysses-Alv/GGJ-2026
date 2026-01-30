@@ -1,54 +1,119 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class AIEnemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 3.5f;
-    [SerializeField] private float blindRecoveryTime = 2f;
+    [SerializeField] private float baseSpeed = 3.5f;
+    [SerializeField] private float chaseSpeedMultiplier = 1.15f;
+    [SerializeField] private float focusRequiredTime = 1.5f;
 
     private NavMeshAgent agent;
     private Transform player;
-    private bool isActive = true;
-    private bool isBlinded = false;
-    private float blindTimer = 0f;
+    private IAState currentState;
 
-    void Start()
+    private float focusTimer;
+    private bool isFocused;
+
+    public IAState State => currentState;
+
+    [SerializeField] private TriggerEvent OnPlayerNear, OnPlayerKilled;
+
+    private bool isChasing => currentState.Equals(IAState.Chasing);
+
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = moveSpeed;
-
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        AIManager.Instance.SubscribeEnemy(this);
     }
+
+    private void Start()
+    {
+        AIManager.Instance.RegisterEnemy(this);
+        SetState(IAState.Imitating);
+        OnPlayerNear.unityEvent.AddListener(HandlePlayerNear);
+        OnPlayerKilled.unityEvent.AddListener(HandlePlayerKilled);
+    }
+
+
 
     void Update()
     {
-        if (isActive && !isBlinded && player != null)
+        if (isChasing)
         {
             agent.SetDestination(player.position);
-        }
 
-        if (isBlinded)
-        {
-            blindTimer += Time.deltaTime;
-            if (blindTimer >= blindRecoveryTime)
+            if (isFocused)
             {
-                isBlinded = false;
-                agent.isStopped = !isActive;
+                focusTimer += Time.deltaTime;
+                if (focusTimer >= focusRequiredTime)
+                {
+                    AIManager.Instance.SetEnemyInactive(this);
+                }
+            }
+            else
+            {
+                focusTimer = 0f;
             }
         }
     }
 
-    public void SetActive(bool active)
+    public void SetState(IAState newState)
     {
-        isActive = active;
-        agent.isStopped = !active;
+        currentState = newState;
+        focusTimer = 0f;
+        isFocused = false;
+
+        switch (currentState)
+        {
+            case IAState.Imitating:
+                agent.isStopped = true;
+                break;
+
+            case IAState.Chasing:
+                agent.isStopped = false;
+                agent.speed = baseSpeed * chaseSpeedMultiplier;
+                break;
+
+            case IAState.InactiveImitating:
+                agent.isStopped = true;
+                break;
+
+            case IAState.Inactive:
+                agent.isStopped = true;
+                break;
+        }
     }
 
-    public void Blind()
+    public void RequestActivation()
     {
-        isBlinded = true;
-        agent.isStopped = true;
-        blindTimer = 0f;
+        if (currentState == IAState.Imitating)
+        {
+            AIManager.Instance.TryActivateEnemy(this);
+        }
+    }
+    private void HandlePlayerKilled()
+    {
+        if (isChasing)
+        {
+            KillPlayer();
+        }
+    }
+
+    private void KillPlayer()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void HandlePlayerNear()
+    {
+        RequestActivation();
+    }
+
+    public void SetFocused(bool focused)
+    {
+        isFocused = focused;
     }
 }

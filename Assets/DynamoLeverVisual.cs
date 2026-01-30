@@ -4,6 +4,7 @@ using UnityEngine;
 public class DynamoLeverVisual : MonoBehaviour
 {
     public Transform lever;
+
     public enum Axis
     {
         X,
@@ -27,7 +28,6 @@ public class DynamoLeverVisual : MonoBehaviour
         if (axis == Axis.X) rotation.x = visualRotationPerImpulse * direction;
         if (axis == Axis.Y) rotation.y = visualRotationPerImpulse * direction;
         if (axis == Axis.Z) rotation.z = visualRotationPerImpulse * direction;
-
 
         currentTween = lever.DOLocalRotate(
             lever.localEulerAngles + rotation,
