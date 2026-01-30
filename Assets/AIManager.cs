@@ -1,16 +1,5 @@
-
 using System.Collections.Generic;
 using UnityEngine;
-
-
-public enum IAState
-{
-    Imitating,
-    Chasing,
-    InactiveImitating,
-    Inactive
-}
-
 
 public class AIManager : MonoBehaviour
 {
@@ -78,4 +67,28 @@ public class AIManager : MonoBehaviour
                 e.SetState(IAState.Imitating);
         }
     }
+
+    public void OnPlayerEnteredSafeZone()
+    {
+        if (activeChasingEnemy != null)
+        {
+            activeChasingEnemy.ResetToInitialState();
+            activeChasingEnemy = null;
+        }
+
+        inactiveEnemy = null;
+
+        foreach (var e in enemies)
+        {
+            if (e.State != IAState.Imitating)
+                e.SetState(IAState.Imitating);
+        }
+    }
+}
+public enum IAState
+{
+    Imitating,
+    InactiveImitating,
+    Inactive,
+    Chasing
 }

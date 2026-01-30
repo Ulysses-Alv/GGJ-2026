@@ -46,6 +46,7 @@ public class RaycastLight : MonoBehaviour
 
     protected virtual void OnHit(Collider collider, RaycastHit hit)
     {
+        Debug.Log("hitting...");
         collider.GetComponent<AIEnemy>().SetFocused(true);
     }
 

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class AIEnemy : MonoBehaviour
@@ -9,39 +8,49 @@ public class AIEnemy : MonoBehaviour
     [SerializeField] private float baseSpeed = 3.5f;
     [SerializeField] private float chaseSpeedMultiplier = 1.15f;
     [SerializeField] private float focusRequiredTime = 1.5f;
-
+    [SerializeField] private TriggerEvent killEvent, chaseEvent;
     private NavMeshAgent agent;
     private Transform player;
     private IAState currentState;
+
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
 
     private float focusTimer;
     private bool isFocused;
 
     public IAState State => currentState;
 
-    [SerializeField] private TriggerEvent OnPlayerNear, OnPlayerKilled;
-
-    private bool isChasing => currentState.Equals(IAState.Chasing);
-
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
 
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+
+    }
     private void Start()
     {
         AIManager.Instance.RegisterEnemy(this);
         SetState(IAState.Imitating);
-        OnPlayerNear.unityEvent.AddListener(HandlePlayerNear);
-        OnPlayerKilled.unityEvent.AddListener(HandlePlayerKilled);
+        killEvent.unityEvent.AddListener(HandleKill);
+        chaseEvent.unityEvent.AddListener(HandleChase);
     }
 
+    private void HandleChase()
+    {
+        RequestActivation();
+    }
 
+    private void HandleKill()
+    {
+        throw new NotImplementedException();
+    }
 
     void Update()
     {
-        if (isChasing)
+        if (currentState == IAState.Chasing)
         {
             agent.SetDestination(player.position);
 
@@ -94,26 +103,18 @@ public class AIEnemy : MonoBehaviour
             AIManager.Instance.TryActivateEnemy(this);
         }
     }
-    private void HandlePlayerKilled()
-    {
-        if (isChasing)
-        {
-            KillPlayer();
-        }
-    }
-
-    private void KillPlayer()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void HandlePlayerNear()
-    {
-        RequestActivation();
-    }
 
     public void SetFocused(bool focused)
     {
         isFocused = focused;
     }
+
+    public void ResetToInitialState()
+    {
+        agent.Warp(initialPosition);
+        transform.rotation = initialRotation;
+        SetState(IAState.Imitating);
+    }
+
+
 }
