@@ -3,7 +3,32 @@ guid: ed320610facedae4e8a2176d75f58909
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_boxMetal_01
+    second: {fileID: 2100000, guid: 0f26905576d0ab644ab3b7f2c6c4510b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_boxMetal_02
+    second: {fileID: 2100000, guid: 3b9d7bc8132efcd4095feff726ad29f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_bulb
+    second: {fileID: 2100000, guid: 8764f3e2b7e4b514cb7853d85b024507, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_leather
+    second: {fileID: 2100000, guid: 3c61f2f4e199ef94ebffc23490bcc18d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_metal
+    second: {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

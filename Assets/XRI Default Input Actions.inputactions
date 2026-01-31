@@ -3455,13 +3455,22 @@
             ]
         },
         {
-            "name": "Debug",
+            "name": "PC",
             "id": "d7403b15-9ffa-48f9-8850-ec1b6ac63331",
             "actions": [
                 {
                     "name": "Rotate",
                     "type": "Button",
                     "id": "46cb638c-1b57-4c7d-9c30-2dc9393b955d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "6cbd1ab2-6aa9-41a0-bb12-1c557a731ebf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -3477,6 +3486,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d558831-b43b-4eb3-91f2-987abdc0a682",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

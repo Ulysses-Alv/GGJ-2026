@@ -4,9 +4,8 @@ using UnityEngine.InputSystem;
 
 public class DebugLinterna : MonoBehaviour
 {
-
-    public DynamoCore core;
     public DynamoLeverVisual DynamoLeverVisual;
+
     private XRIInputActions inputActions;
 
     private void Awake()
@@ -16,7 +15,7 @@ public class DebugLinterna : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActions.Debug.Rotate.performed += OnRotate;
+        inputActions.PC.Rotate.performed += OnRotate;
         inputActions.Enable();
     }
 
@@ -27,7 +26,7 @@ public class DebugLinterna : MonoBehaviour
 
     private void OnDisable()
     {
-        inputActions.Debug.Rotate.performed -= OnRotate;
+        inputActions.PC.Rotate.performed -= OnRotate;
         inputActions.Disable();
     }
 }

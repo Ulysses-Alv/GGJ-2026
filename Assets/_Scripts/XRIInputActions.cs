@@ -3541,13 +3541,22 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Debug"",
+            ""name"": ""PC"",
             ""id"": ""d7403b15-9ffa-48f9-8850-ec1b6ac63331"",
             ""actions"": [
                 {
                     ""name"": ""Rotate"",
                     ""type"": ""Button"",
                     ""id"": ""46cb638c-1b57-4c7d-9c30-2dc9393b955d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""6cbd1ab2-6aa9-41a0-bb12-1c557a731ebf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -3563,6 +3572,17 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d558831-b43b-4eb3-91f2-987abdc0a682"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -3681,9 +3701,10 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         m_TouchscreenGestures_TwistDeltaRotation = m_TouchscreenGestures.FindAction("Twist Delta Rotation", throwIfNotFound: true);
         m_TouchscreenGestures_ScreenTouchCount = m_TouchscreenGestures.FindAction("Screen Touch Count", throwIfNotFound: true);
         m_TouchscreenGestures_SpawnObject = m_TouchscreenGestures.FindAction("Spawn Object", throwIfNotFound: true);
-        // Debug
-        m_Debug = asset.FindActionMap("Debug", throwIfNotFound: true);
-        m_Debug_Rotate = m_Debug.FindAction("Rotate", throwIfNotFound: true);
+        // PC
+        m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
+        m_PC_Rotate = m_PC.FindAction("Rotate", throwIfNotFound: true);
+        m_PC_Interact = m_PC.FindAction("Interact", throwIfNotFound: true);
     }
 
     ~@XRIInputActions()
@@ -3697,7 +3718,7 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_XRIRightLocomotion.enabled, "This will cause a leak and performance issues, XRIInputActions.XRIRightLocomotion.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_XRIUI.enabled, "This will cause a leak and performance issues, XRIInputActions.XRIUI.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_TouchscreenGestures.enabled, "This will cause a leak and performance issues, XRIInputActions.TouchscreenGestures.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Debug.enabled, "This will cause a leak and performance issues, XRIInputActions.Debug.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PC.enabled, "This will cause a leak and performance issues, XRIInputActions.PC.Disable() has not been called.");
     }
 
     /// <summary>
@@ -5547,29 +5568,34 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
     /// </summary>
     public TouchscreenGesturesActions @TouchscreenGestures => new TouchscreenGesturesActions(this);
 
-    // Debug
-    private readonly InputActionMap m_Debug;
-    private List<IDebugActions> m_DebugActionsCallbackInterfaces = new List<IDebugActions>();
-    private readonly InputAction m_Debug_Rotate;
+    // PC
+    private readonly InputActionMap m_PC;
+    private List<IPCActions> m_PCActionsCallbackInterfaces = new List<IPCActions>();
+    private readonly InputAction m_PC_Rotate;
+    private readonly InputAction m_PC_Interact;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Debug".
+    /// Provides access to input actions defined in input action map "PC".
     /// </summary>
-    public struct DebugActions
+    public struct PCActions
     {
         private @XRIInputActions m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public DebugActions(@XRIInputActions wrapper) { m_Wrapper = wrapper; }
+        public PCActions(@XRIInputActions wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Debug/Rotate".
+        /// Provides access to the underlying input action "PC/Rotate".
         /// </summary>
-        public InputAction @Rotate => m_Wrapper.m_Debug_Rotate;
+        public InputAction @Rotate => m_Wrapper.m_PC_Rotate;
+        /// <summary>
+        /// Provides access to the underlying input action "PC/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_PC_Interact;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Debug; }
+        public InputActionMap Get() { return m_Wrapper.m_PC; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -5577,9 +5603,9 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="DebugActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PCActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(DebugActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PCActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -5587,14 +5613,17 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="DebugActions" />
-        public void AddCallbacks(IDebugActions instance)
+        /// <seealso cref="PCActions" />
+        public void AddCallbacks(IPCActions instance)
         {
-            if (instance == null || m_Wrapper.m_DebugActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_DebugActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PCActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PCActionsCallbackInterfaces.Add(instance);
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -5603,21 +5632,24 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="DebugActions" />
-        private void UnregisterCallbacks(IDebugActions instance)
+        /// <seealso cref="PCActions" />
+        private void UnregisterCallbacks(IPCActions instance)
         {
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DebugActions.UnregisterCallbacks(IDebugActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PCActions.UnregisterCallbacks(IPCActions)" />.
         /// </summary>
-        /// <seealso cref="DebugActions.UnregisterCallbacks(IDebugActions)" />
-        public void RemoveCallbacks(IDebugActions instance)
+        /// <seealso cref="PCActions.UnregisterCallbacks(IPCActions)" />
+        public void RemoveCallbacks(IPCActions instance)
         {
-            if (m_Wrapper.m_DebugActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PCActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -5627,21 +5659,21 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="DebugActions.AddCallbacks(IDebugActions)" />
-        /// <seealso cref="DebugActions.RemoveCallbacks(IDebugActions)" />
-        /// <seealso cref="DebugActions.UnregisterCallbacks(IDebugActions)" />
-        public void SetCallbacks(IDebugActions instance)
+        /// <seealso cref="PCActions.AddCallbacks(IPCActions)" />
+        /// <seealso cref="PCActions.RemoveCallbacks(IPCActions)" />
+        /// <seealso cref="PCActions.UnregisterCallbacks(IPCActions)" />
+        public void SetCallbacks(IPCActions instance)
         {
-            foreach (var item in m_Wrapper.m_DebugActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PCActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_DebugActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PCActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="DebugActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PCActions" /> instance referencing this action map.
     /// </summary>
-    public DebugActions @Debug => new DebugActions(this);
+    public PCActions @PC => new PCActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "XRI Head" which allows adding and removing callbacks.
     /// </summary>
@@ -6359,11 +6391,11 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         void OnSpawnObject(InputAction.CallbackContext context);
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Debug" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PC" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="DebugActions.AddCallbacks(IDebugActions)" />
-    /// <seealso cref="DebugActions.RemoveCallbacks(IDebugActions)" />
-    public interface IDebugActions
+    /// <seealso cref="PCActions.AddCallbacks(IPCActions)" />
+    /// <seealso cref="PCActions.RemoveCallbacks(IPCActions)" />
+    public interface IPCActions
     {
         /// <summary>
         /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -6372,5 +6404,12 @@ public partial class @XRIInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRotate(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
