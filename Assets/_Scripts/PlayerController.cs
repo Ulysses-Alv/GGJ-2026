@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,15 @@ public class PlayerController : MonoBehaviour
         inputActions = new XRIInputActions();
         characterController = GetComponent<CharacterController>();
     }
-
+    Action updateActions;
+    private void Start()
+    {
+        updateActions += HandleMovement;
+        if (GameMode.gameMode.Equals(GameMode.Mode.PC))
+        {
+            updateActions += HandleMouseLook;
+        }
+    }
     private void OnEnable()
     {
         inputActions.XRILeftLocomotion.Move.performed += OnMove;
@@ -33,8 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
-        HandleMouseLook();
+        updateActions.Invoke();
     }
 
     private void HandleMovement()
@@ -64,4 +72,8 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
     }
+}
+public interface IInteractable
+{
+    void Interact();
 }

@@ -17,9 +17,36 @@ public class RaycastLight : MonoBehaviour
 
     private RaycastHit[] hits;
 
+    [SerializeField] private float maxIntensity = 250f;
+    [SerializeField] private Light lightSource;
+
+    [SerializeField] private AnimationCurve curve;
+    [SerializeField] private float idleTimeToEnableLight = 0.35f;
+
+    public bool IsLightActive => lightSource.intensity > 0f;
+
     private void Update()
     {
-        if (!dynamoCore.IsLightActive())
+
+        bool canEnableLight =
+    dynamoCore._normalizedCharge > 0.4f &&
+          (
+               dynamoCore._timeSinceLastCharge >= idleTimeToEnableLight ||
+              (dynamoCore._normalizedCharge >= 0.9f && !dynamoCore._addedChargeThisFrame)
+          );
+
+        if (canEnableLight)
+        {
+            float curveValue = curve.Evaluate(dynamoCore._normalizedCharge);
+            lightSource.intensity = curveValue * maxIntensity;
+        }
+        else
+        {
+            lightSource.intensity = 0f;
+        }
+
+
+        if (!IsLightActive)
             return;
 
         Vector3 direction = GetDirection();
@@ -60,7 +87,7 @@ public class RaycastLight : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!dynamoCore.IsLightActive())
+        if (!IsLightActive)
             return;
 
         Vector3 direction = GetDirection();
@@ -72,4 +99,16 @@ public class RaycastLight : MonoBehaviour
         Gizmos.DrawLine(origin, end);
         Gizmos.DrawSphere(end, 0.05f);
     }
+}
+public static class GameMode
+{
+    public enum Mode
+    {
+        Not_Defined,
+        PC,
+        VR
+    }
+    public static Mode gameMode = Mode.Not_Defined;
+    public static bool isVR => gameMode == Mode.VR;
+    public static bool isPC => gameMode == Mode.PC;
 }
