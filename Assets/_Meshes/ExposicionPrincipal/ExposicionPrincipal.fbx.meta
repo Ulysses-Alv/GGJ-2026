@@ -3,7 +3,27 @@ guid: 0b14c92a01c7b5e469f8b7c7f8196d6a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_pared
+    second: {fileID: 2100000, guid: a94c79b907c539a4cbffe0fa2df0d231, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_pilar
+    second: {fileID: 2100000, guid: dc8c6b22da05ec4429733efc9208c82b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_suelo
+    second: {fileID: 2100000, guid: 512a558e77ab0494cad8fcd8f34536db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mt_techo
+    second: {fileID: 2100000, guid: f6fdcfd390f3b884984e471d2710b13c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
