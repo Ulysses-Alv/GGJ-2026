@@ -1013,7 +1013,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_ColorTemperature: 1800
+  m_ColorTemperature: 5019
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxCharge: 100
-  decayPerSecond: 5
+  decayPerSecond: 10
   currentCharge: 0
 --- !u!114 &4925266524219001210
 MonoBehaviour:
@@ -1332,9 +1332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lever: {fileID: 7415303199896042959}
-  axis: 0
-  visualRotationPerImpulse: 45
-  duration: 0.1
+  axis: 1
+  visualRotationPerImpulse: 30
+  duration: 0.02
 --- !u!114 &1842552056219088477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1349,8 +1349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamo: {fileID: 4925266524219001210}
   leverTransform: {fileID: 7415303199896042959}
-  rotationAxis: {x: 1, y: 0, z: 0}
-  energyMultiplier: 1
+  rotationAxis: {x: 0, y: 1, z: 0}
+  energyMultiplier: 3
 --- !u!114 &5241928110449540898
 MonoBehaviour:
   m_ObjectHideFlags: 0
