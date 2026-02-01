@@ -5,34 +5,47 @@ public class AIManager : MonoBehaviour
 {
     public static AIManager Instance { get; private set; }
 
-    private readonly List<AIEnemy> enemies = new();
+    private readonly List<AIEnemy> mainEnemies = new();
+    private readonly List<AIEnemy> hallwayEnemies = new();
+
+    private List<AIEnemy> currentEnemies;
 
     private AIEnemy activeChasingEnemy;
     private AIEnemy inactiveEnemy;
 
-    void Awake()
+    private bool canActivateAny;
+
+    private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
-    public void RegisterEnemy(AIEnemy enemy)
+    public void EnableActivation()
     {
-        if (!enemies.Contains(enemy))
-        {
-            enemies.Add(enemy);
-        }
+        canActivateAny = true;
+    }
+
+    public void RegisterEnemy(AIEnemy enemy, bool isMainZone)
+    {
+        var list = isMainZone ? mainEnemies : hallwayEnemies;
+
+        if (!list.Contains(enemy))
+            list.Add(enemy);
+
     }
 
     public void TryActivateEnemy(AIEnemy enemy)
     {
+        if (!canActivateAny)
+            return;
+
         if (activeChasingEnemy != null)
+            return;
+
+        if (currentEnemies == null || !currentEnemies.Contains(enemy))
             return;
 
         if (inactiveEnemy != null)
@@ -43,7 +56,7 @@ public class AIManager : MonoBehaviour
 
         activeChasingEnemy = enemy;
 
-        foreach (var e in enemies)
+        foreach (var e in currentEnemies)
         {
             if (e == enemy)
                 e.SetState(IAState.Chasing);
@@ -61,30 +74,56 @@ public class AIManager : MonoBehaviour
         inactiveEnemy = enemy;
         activeChasingEnemy = null;
 
-        foreach (var e in enemies)
+        foreach (var e in currentEnemies)
         {
             if (e != inactiveEnemy)
                 e.SetState(IAState.Imitating);
         }
     }
 
-    public void OnPlayerEnteredSafeZone()
+    public void SetPlayerZone(GameZones zone)
     {
-        if (activeChasingEnemy != null)
+        switch (zone)
         {
-            activeChasingEnemy.ResetToInitialState();
-            activeChasingEnemy = null;
-        }
+            case GameZones.SafeZone:
+                ResetAllEnemies();
+                break;
+            case GameZones.Electricity:
+                ResetAllEnemies();
+                break;
 
-        inactiveEnemy = null;
+            case GameZones.Main:
+                SwitchZone(mainEnemies);
+                break;
 
-        foreach (var e in enemies)
-        {
-            if (e.State != IAState.Imitating)
-                e.SetState(IAState.Imitating);
+            case GameZones.HallwayEnd:
+                SwitchZone(hallwayEnemies);
+                break;
         }
     }
+
+    private void SwitchZone(List<AIEnemy> newZoneEnemies)
+    {
+        ResetAllEnemies();
+        currentEnemies = newZoneEnemies;
+    }
+
+    private void ResetAllEnemies()
+    {
+        if (activeChasingEnemy != null)
+            activeChasingEnemy.ResetToInitialState();
+
+        activeChasingEnemy = null;
+        inactiveEnemy = null;
+
+        foreach (var e in mainEnemies)
+            e.SetState(IAState.Imitating);
+
+        foreach (var e in hallwayEnemies)
+            e.SetState(IAState.Imitating);
+    }
 }
+
 public enum IAState
 {
     Imitating,

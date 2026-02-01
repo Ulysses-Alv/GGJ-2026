@@ -7,8 +7,15 @@ public class DynamoBattery : MonoBehaviour
 
     [SerializeField] private float currentCharge;
 
+    private bool isCharging;
     void Update()
     {
+        if (isCharging)
+        {
+            isCharging = false;
+            return;
+        }
+
         currentCharge = Mathf.Max(
             currentCharge - decayPerSecond * Time.deltaTime,
             0f
@@ -22,6 +29,7 @@ public class DynamoBattery : MonoBehaviour
             0f,
             maxCharge
         );
+        isCharging = true;
     }
 
     public float GetNormalizedCharge()

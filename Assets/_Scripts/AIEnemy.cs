@@ -10,6 +10,7 @@ public class AIEnemy : MonoBehaviour
     [SerializeField] private float focusRequiredTime = 1.5f;
     [SerializeField] private TriggerEvent killEvent, chaseEvent;
     [SerializeField] private AudioSource movementAudio;
+    [SerializeField] private bool isMain;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -34,7 +35,7 @@ public class AIEnemy : MonoBehaviour
     }
     private void Start()
     {
-        AIManager.Instance.RegisterEnemy(this);
+        AIManager.Instance.RegisterEnemy(this, isMain);
         SetState(IAState.Imitating);
         killEvent.unityEvent.AddListener(HandleKill);
         chaseEvent.unityEvent.AddListener(HandleChase);
