@@ -23,8 +23,8 @@ public class Door : MonoBehaviour
     private bool isOpen;
     private Vector3 closedPosition;
 
-    private AudioSource audioSource;
-    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip open, close;
 
     private void Awake()
     {
@@ -40,7 +40,6 @@ public class Door : MonoBehaviour
             return;
 
         doorOpenEvent.Invoke();
-        audioSource.PlayOneShot(clip);
     }
 
     [ContextMenu("Close Sesamo!")]
@@ -57,10 +56,12 @@ public class Door : MonoBehaviour
         Vector3 finalPos = closedPosition + GetMoveOffset();
         DoorVisual.DOLocalMove(finalPos, openDuration).SetEase(Ease.OutQuad);
         isOpen = true;
+        audioSource.PlayOneShot(open);
     }
 
     private void CloseDoor()
     {
+        audioSource.PlayOneShot(close);
         DoorVisual.DOLocalMove(closedPosition, openDuration);
         isOpen = false;
     }
@@ -71,9 +72,9 @@ public class Door : MonoBehaviour
         {
             DoorDir.Up => Vector3.up * 2f,
             DoorDir.Down => Vector3.down * 2f,
-            DoorDir.Left => Vector3.left * 1f,
-            DoorDir.Right => Vector3.right * 1f,
-            DoorDir.Forward => Vector3.forward * 1f,
+            DoorDir.Left => Vector3.left * 2f,
+            DoorDir.Right => Vector3.right * 2f,
+            DoorDir.Forward => Vector3.forward * 2f,
             DoorDir.Backward => Vector3.back * 1f,
             _ => Vector3.zero
         };

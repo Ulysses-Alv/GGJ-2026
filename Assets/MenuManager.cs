@@ -39,6 +39,6 @@ public class MenuManager : MonoBehaviour
 
     private void HandlePlay()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("BasicScene");
     }
 }

@@ -49,7 +49,9 @@ MonoBehaviour:
   doorDirection: 3
   openDuration: 1
   DoorVisual: {fileID: 5176252855643830010}
-  clip: {fileID: 0}
+  audioSource: {fileID: 1071233274010891926}
+  open: {fileID: 8300000, guid: 4a2258ece8f78a741b942973ed76d7e0, type: 3}
+  close: {fileID: 8300000, guid: a10cfaeed9a33f54d9188b4caa72ea63, type: 3}
 --- !u!1 &6875654383837688722
 GameObject:
   m_ObjectHideFlags: 0
