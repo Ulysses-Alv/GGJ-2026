@@ -21,7 +21,11 @@ public class MenuManager : MonoBehaviour
         Back.onClick.AddListener(HandleBack);
         Exit.onClick.AddListener(HandleExit);
     }
-
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     private void HandleExit()
     {
         Application.Quit();
