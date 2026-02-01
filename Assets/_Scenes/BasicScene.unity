@@ -28220,7 +28220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lights:
   - {fileID: 1181132557}
-  audioS: {fileID: 0}
+  audioS: {fileID: 1137043381}
 --- !u!4 &1137043380
 Transform:
   m_ObjectHideFlags: 0
