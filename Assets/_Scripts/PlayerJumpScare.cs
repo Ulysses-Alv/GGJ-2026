@@ -6,15 +6,17 @@ public class PlayerJumpScare : MonoBehaviour, IJumpscare
     [SerializeField] private GameObject jumpscare;
     [SerializeField] private Animator animator;
     [SerializeField] private AudioSource source;
-bool isTriggered;
-public static PlayerJumpScare instance;
-public void Awake(){
-instance = this;
-}
+    bool isTriggered;
+    public static PlayerJumpScare instance;
+    public void Awake()
+    {
+        instance = this;
+    }
     public void TriggerJumpscare()
     {
-if(isTriggered) return;
-isTriggered = true;
+        if (isTriggered) return;
+        isTriggered = true;
+        jumpscare.SetActive(true);
         source.Play();
         animator.SetTrigger("activate");
         Invoke(nameof(GoMenu), 2f);
