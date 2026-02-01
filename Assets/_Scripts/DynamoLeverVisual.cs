@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DynamoLeverVisual : MonoBehaviour
 {
@@ -17,7 +18,29 @@ public class DynamoLeverVisual : MonoBehaviour
     [SerializeField] private float duration = 0.25f;
 
     private Tween currentTween;
+    private XRIInputActions inputActions;
 
+    private void Awake()
+    {
+        inputActions = new XRIInputActions();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.PC.Rotate.performed += OnRotate;
+        inputActions.Enable();
+    }
+
+    private void OnRotate(InputAction.CallbackContext context)
+    {
+        PlayImpulse();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.PC.Rotate.performed -= OnRotate;
+        inputActions.Disable();
+    }
     public void PlayImpulse(bool isRight = true)
     {
         currentTween?.Kill();

@@ -12,7 +12,7 @@ public class MenuManager : MonoBehaviour
     {
         gameModeToggle.onValueChanged.AddListener((value) =>
         {
-            GameMode.gameMode = value ? GameMode.Mode.VR : GameMode.Mode.PC;
+            GameMode.isVR = value;
         });
         gameModeToggle.isOn = false;
 

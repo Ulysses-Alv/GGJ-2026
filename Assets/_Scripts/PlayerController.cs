@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         updateActions += HandleMovement;
-        if (GameMode.gameMode.Equals(GameMode.Mode.PC))
+        if (!GameMode.isVR)
         {
             updateActions += HandleMouseLook;
         }

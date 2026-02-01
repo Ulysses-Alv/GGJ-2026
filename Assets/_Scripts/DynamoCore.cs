@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DynamoCore : MonoBehaviour
 {
@@ -6,8 +7,12 @@ public class DynamoCore : MonoBehaviour
     [SerializeField] private float maxAngularSpeed = 720f;
     [SerializeField] private float friction = 450f;
     [SerializeField] private float energyPerDegree = 0.02f;
-
+    [SerializeField] private float stopChargeDelay = 0.15f;
     [SerializeField] private DynamoBattery battery;
+
+    public UnityEvent OnChargeStarted;
+    public UnityEvent OnChargeStopped;
+
 
     private float angularSpeed;
     private float direction = 1f;
@@ -17,16 +22,29 @@ public class DynamoCore : MonoBehaviour
     private float timeSinceLastCharge;
     private float normalizedCharge;
 
-    public bool _addedChargeThisFrame => addedChargeThisFrame;
-    public float _timeSinceLastCharge => timeSinceLastCharge;
-    public float _normalizedCharge => normalizedCharge;
+    private bool isCharging;
 
+    public bool AddedChargeThisFrame => addedChargeThisFrame;
+    public float TimeSinceLastCharge => timeSinceLastCharge;
+    public float NormalizedCharge => normalizedCharge;
+    public bool IsCharging => isCharging;
+    [SerializeField] private float chargeLockTime;
+    private float chargeLockTimer;
+
+    public bool IsChargeLocked => chargeLockTimer > 0f;
+
+    public void LockCharge(float duration)
+    {
+        chargeLockTime = duration;
+        chargeLockTimer = duration;
+    }
 
     void Update()
     {
         addedChargeThisFrame = false;
         inputTimer -= Time.deltaTime;
         timeSinceLastCharge += Time.deltaTime;
+        chargeLockTimer -= Time.deltaTime;
 
         if (inputTimer <= 0f)
         {
@@ -41,8 +59,7 @@ public class DynamoCore : MonoBehaviour
         {
             float deltaRotation = angularSpeed * direction * Time.deltaTime;
             float energy = Mathf.Abs(deltaRotation) * energyPerDegree;
-
-            if (energy > 0f)
+            if (energy > 0f && chargeLockTimer <= 0f)
             {
                 battery.AddCharge(energy);
                 addedChargeThisFrame = true;
@@ -50,8 +67,26 @@ public class DynamoCore : MonoBehaviour
             }
         }
 
+        UpdateChargeState();
+
         normalizedCharge = battery.GetNormalizedCharge();
     }
+
+    private void UpdateChargeState()
+    {
+        if (!isCharging && addedChargeThisFrame)
+        {
+            isCharging = true;
+            OnChargeStarted?.Invoke();
+        }
+
+        if (isCharging && timeSinceLastCharge > stopChargeDelay)
+        {
+            isCharging = false;
+            OnChargeStopped?.Invoke();
+        }
+    }
+
 
     public void AddImpulse(bool isRight = true)
     {
@@ -70,5 +105,4 @@ public class DynamoCore : MonoBehaviour
     {
         return angularSpeed / maxAngularSpeed;
     }
-
 }

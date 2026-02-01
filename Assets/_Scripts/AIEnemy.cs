@@ -9,6 +9,8 @@ public class AIEnemy : MonoBehaviour
     [SerializeField] private float chaseSpeedMultiplier = 1.15f;
     [SerializeField] private float focusRequiredTime = 1.5f;
     [SerializeField] private TriggerEvent killEvent, chaseEvent;
+    [SerializeField] private AudioSource movementAudio;
+
     private NavMeshAgent agent;
     private Transform player;
     private IAState currentState;
@@ -68,7 +70,6 @@ public class AIEnemy : MonoBehaviour
             }
         }
     }
-
     public void SetState(IAState newState)
     {
         currentState = newState;
@@ -79,21 +80,38 @@ public class AIEnemy : MonoBehaviour
         {
             case IAState.Imitating:
                 agent.isStopped = true;
+                StopMovementAudio();
                 break;
 
             case IAState.Chasing:
                 agent.isStopped = false;
                 agent.speed = baseSpeed * chaseSpeedMultiplier;
+                PlayMovementAudio();
                 break;
 
             case IAState.InactiveImitating:
                 agent.isStopped = true;
+                StopMovementAudio();
                 break;
 
             case IAState.Inactive:
                 agent.isStopped = true;
+                StopMovementAudio();
                 break;
         }
+    }
+
+    private void PlayMovementAudio()
+    {
+        if (!movementAudio.isPlaying)
+            movementAudio.Play();
+        movementAudio.loop = true;
+    }
+
+    private void StopMovementAudio()
+    {
+        if (movementAudio.isPlaying)
+            movementAudio.Stop();
     }
 
     public void RequestActivation()
