@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -80,3 +81,4 @@ public class Door : MonoBehaviour
         };
     }
 }
+

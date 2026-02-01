@@ -48,7 +48,7 @@ public class AIEnemy : MonoBehaviour
 
     private void HandleKill()
     {
-        throw new NotImplementedException();
+        PlayerJumpScare.instance.TriggerJumpscare();
     }
 
     void Update()
