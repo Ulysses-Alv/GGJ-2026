@@ -19,7 +19,7 @@ public class RaycastLight : MonoBehaviour
 
     private bool isLightActive;
     private bool fullChargeConsumed;
-
+    Vector3 direction => transform.forward * -1f;
     public bool IsLightActive => isLightActive;
 
     private void Update()
@@ -80,7 +80,7 @@ public class RaycastLight : MonoBehaviour
 
     private void Raycast()
     {
-        Vector3 direction = transform.forward;
+
 
         RaycastHit[] hits = Physics.RaycastAll(
             transform.position,
@@ -100,5 +100,16 @@ public class RaycastLight : MonoBehaviour
                 }
             }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        if (!isLightActive)
+            return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(
+            transform.position,
+            transform.position + direction * rayDistance
+        );
     }
 }

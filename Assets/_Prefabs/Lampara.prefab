@@ -1335,6 +1335,7 @@ MonoBehaviour:
   axis: 1
   visualRotationPerImpulse: 30
   duration: 0.02
+  isLamp: 1
 --- !u!114 &1842552056219088477
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class DynamoLeverVisual : MonoBehaviour
 
     private Tween currentTween;
     private XRIInputActions inputActions;
+    [SerializeField] private bool isLamp;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class DynamoLeverVisual : MonoBehaviour
 
     private void OnEnable()
     {
+        if (!isLamp) return;
+
         inputActions.PC.Rotate.performed += OnRotate;
         inputActions.Enable();
     }
@@ -38,6 +41,8 @@ public class DynamoLeverVisual : MonoBehaviour
 
     private void OnDisable()
     {
+        if (!isLamp) return;
+
         inputActions.PC.Rotate.performed -= OnRotate;
         inputActions.Disable();
     }

@@ -38,8 +38,9 @@ public class RaycastInteractorPC : MonoBehaviour
             out RaycastHit hit,
             interactDistance,
             interactLayer)
-            )
+        )
         {
+            Debug.Log(hit.transform.gameObject.name);
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
                 currentInteractable = interactable;
@@ -52,5 +53,17 @@ public class RaycastInteractorPC : MonoBehaviour
     private void OnInteract(InputAction.CallbackContext context)
     {
         currentInteractable?.Interact();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (cameraTransform == null)
+            return;
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(
+            cameraTransform.position,
+            cameraTransform.position + cameraTransform.forward * interactDistance
+        );
     }
 }

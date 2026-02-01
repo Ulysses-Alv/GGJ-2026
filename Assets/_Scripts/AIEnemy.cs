@@ -125,6 +125,7 @@ public class AIEnemy : MonoBehaviour
 
     public void SetFocused(bool focused)
     {
+        Debug.Log("Apuntando");
         isFocused = focused;
     }
 

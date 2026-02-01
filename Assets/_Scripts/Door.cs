@@ -23,6 +23,8 @@ public class Door : MonoBehaviour
     private bool isOpen;
     private Vector3 closedPosition;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip clip;
 
     private void Awake()
     {
@@ -38,6 +40,7 @@ public class Door : MonoBehaviour
             return;
 
         doorOpenEvent.Invoke();
+        audioSource.PlayOneShot(clip);
     }
 
     [ContextMenu("Close Sesamo!")]
