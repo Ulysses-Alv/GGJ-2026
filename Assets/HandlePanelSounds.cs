@@ -1,13 +1,10 @@
 using UnityEngine;
 
-public class LampSound : MonoBehaviour
+public class HandlePanelSounds : MonoBehaviour
 {
-    [SerializeField] private AudioClip depleted;
-    [SerializeField] private AudioClip powered;
     [SerializeField] private AudioClip charging;
 
     [SerializeField] private DynamoCore core;
-    [SerializeField] private RaycastLight lightSource;
     [SerializeField] private AudioSource audioSource;
     private bool isPlayingCharging;
 
@@ -15,18 +12,12 @@ public class LampSound : MonoBehaviour
     {
         core.OnChargeStarted.AddListener(HandleChargeStarted);
         core.OnChargeStopped.AddListener(HandleChargeStopped);
-
-        lightSource.OnLightPowered.AddListener(HandleLightPowered);
-        lightSource.OnLightDepleted.AddListener(HandleLightDepleted);
     }
 
     void OnDisable()
     {
         core.OnChargeStarted.RemoveListener(HandleChargeStarted);
         core.OnChargeStopped.RemoveListener(HandleChargeStopped);
-
-        lightSource.OnLightPowered.RemoveListener(HandleLightPowered);
-        lightSource.OnLightDepleted.RemoveListener(HandleLightDepleted);
     }
 
     private void HandleChargeStarted()
@@ -36,6 +27,7 @@ public class LampSound : MonoBehaviour
         audioSource.Play();
         isPlayingCharging = true;
     }
+
     private void Update()
     {
         if (isPlayingCharging)
@@ -48,19 +40,6 @@ public class LampSound : MonoBehaviour
     private void HandleChargeStopped()
     {
         audioSource.Stop(); isPlayingCharging = false;
-    }
-
-    private void HandleLightPowered()
-    {
-        audioSource.Stop();
-        audioSource.PlayOneShot(powered);
-        isPlayingCharging = false;
-    }
-
-    private void HandleLightDepleted()
-    {
-        audioSource.PlayOneShot(depleted);
-        isPlayingCharging = false;
     }
 }
 
