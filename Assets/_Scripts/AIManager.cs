@@ -36,17 +36,23 @@ public class AIManager : MonoBehaviour
             list.Add(enemy);
 
     }
-
-    public void TryActivateEnemy(AIEnemy enemy)
+    public enum Reasons
+    {
+        No_CantActivate,
+        No_ActiveChasing,
+        No_WrongZone,
+        Yes_Correct
+    }
+    public Reasons TryActivateEnemy(AIEnemy enemy)
     {
         if (!canActivateAny)
-            return;
+            return Reasons.No_CantActivate;
 
         if (activeChasingEnemy != null)
-            return;
+            return Reasons.No_ActiveChasing;
 
         if (currentEnemies == null || !currentEnemies.Contains(enemy))
-            return;
+            return Reasons.No_WrongZone;
 
         if (inactiveEnemy != null)
         {
@@ -59,10 +65,17 @@ public class AIManager : MonoBehaviour
         foreach (var e in currentEnemies)
         {
             if (e == enemy)
+            {
+                Debug.Log("Activating Statue");
                 e.SetState(IAState.Chasing);
+            }
             else
+            {
                 e.SetState(IAState.InactiveImitating);
+
+            }
         }
+        return Reasons.Yes_Correct;
     }
 
     public void SetEnemyInactive(AIEnemy enemy)
@@ -93,10 +106,12 @@ public class AIManager : MonoBehaviour
                 break;
 
             case GameZones.Main:
+                Debug.Log("Current Zone: Main");
                 SwitchZone(mainEnemies);
                 break;
 
             case GameZones.HallwayEnd:
+                Debug.Log("Current Zone: Hallway");
                 SwitchZone(hallwayEnemies);
                 break;
         }

@@ -41,14 +41,14 @@ public class AIEnemy : MonoBehaviour
         chaseEvent.unityEvent.AddListener(HandleChase);
     }
 
-    private void HandleChase()
+    private void HandleChase(Collider other)
     {
         RequestActivation();
     }
 
-    private void HandleKill()
+    private void HandleKill(Collider other)
     {
-        PlayerJumpScare.instance.TriggerJumpscare();
+        other.GetComponentInChildren<PlayerJumpScare>().TriggerJumpscare();
     }
 
     void Update()
@@ -119,7 +119,8 @@ public class AIEnemy : MonoBehaviour
     {
         if (currentState == IAState.Imitating)
         {
-            AIManager.Instance.TryActivateEnemy(this);
+            var r = AIManager.Instance.TryActivateEnemy(this);
+            Debug.Log($"{gameObject.name} requested with Result: {r}");
         }
     }
 

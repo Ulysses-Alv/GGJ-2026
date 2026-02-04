@@ -92,7 +92,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
@@ -178,7 +178,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
@@ -502,7 +502,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
@@ -588,7 +588,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8764f3e2b7e4b514cb7853d85b024507, type: 2}
@@ -674,7 +674,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
@@ -880,7 +880,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 502bb67c28a7194439884e1c0b7d4ed1, type: 2}
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 6805285967620247365}
   - component: {fileID: 8497143249718888982}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Light Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +953,7 @@ Transform:
   m_GameObject: {fileID: 3415513822694144625}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.0014999999, y: 0.03400001, z: -0.13724998}
+  m_LocalPosition: {x: 0.0014999999, y: 0.03400001, z: -0.2863}
   m_LocalScale: {x: 2.4999998, y: 2.4999993, z: 2.4999993}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -970,19 +970,19 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 50
-  m_Range: 9.5
-  m_SpotAngle: 57.66599
-  m_InnerSpotAngle: 0
+  m_Intensity: 20
+  m_Range: 15
+  m_SpotAngle: 70
+  m_InnerSpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -1013,7 +1013,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
-  m_ColorTemperature: 5019
+  m_ColorTemperature: 4000
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -1108,7 +1108,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 0f26905576d0ab644ab3b7f2c6c4510b, type: 2}
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   rayDistance: 10
   targetTags:
   - Enemy
-  maxIntensity: 250
+  maxIntensity: 50
   lightSource: {fileID: 6805285967620247365}
   curve:
     serializedVersion: 2

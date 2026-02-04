@@ -413,9 +413,13 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1787986680426285418, guid: cecf52fa97879034086b5ca2fd060d62, type: 3}
+      propertyPath: m_Name
+      value: VisualRenderer
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cecf52fa97879034086b5ca2fd060d62, type: 3}
       propertyPath: m_Name
-      value: AngelEnemy
+      value: Visual
       objectReference: {fileID: 0}
     - target: {fileID: 1825047608648923139, guid: cecf52fa97879034086b5ca2fd060d62, type: 3}
       propertyPath: m_LocalScale.x
