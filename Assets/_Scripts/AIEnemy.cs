@@ -48,6 +48,7 @@ public class AIEnemy : MonoBehaviour
 
     private void HandleKill(Collider other)
     {
+        if(currentState != IAState.Chasing) return;
         other.GetComponentInChildren<PlayerJumpScare>().TriggerJumpscare();
     }
 

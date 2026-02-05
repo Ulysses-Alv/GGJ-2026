@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,7 +36,7 @@ public class RaycastLight : MonoBehaviour
         bool canEnableLight =
             reachedFullCharge ||
             (
-                dynamoCore.NormalizedCharge > 0.4f &&
+                dynamoCore.NormalizedCharge > 0.1f &&
                 (
                     dynamoCore.TimeSinceLastCharge >= idleTimeToEnableLight ||
                     (dynamoCore.NormalizedCharge >= 0.9f && !dynamoCore.AddedChargeThisFrame)
