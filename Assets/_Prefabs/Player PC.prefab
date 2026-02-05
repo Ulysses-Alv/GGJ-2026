@@ -405,6 +405,7 @@ GameObject:
   - component: {fileID: 7285255592023516390}
   - component: {fileID: 9117664331577776305}
   - component: {fileID: 417540067611019459}
+  - component: {fileID: 5009916358385981932}
   m_Layer: 2
   m_Name: Player PC
   m_TagString: Player
@@ -594,10 +595,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02948651964ac54fb95902accc67cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstepClips:
-  - {fileID: 8300000, guid: df2e1fbc2ed66b34897e661aeafcb609, type: 3}
+  clip: {fileID: 0}
   stepDistance: 1.8
   minSpeed: 0.1
+--- !u!168 &5009916358385981932
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260845867306086059}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Delay: 250
+  m_DecayRatio: 0.5
+  m_WetMix: 0.5
+  m_DryMix: 1
 --- !u!1 &7440414516474365345
 GameObject:
   m_ObjectHideFlags: 0

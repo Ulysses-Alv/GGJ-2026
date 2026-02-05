@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FootStepModule : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] footstepClips;
+    [SerializeField] private AudioClip clip;
     [SerializeField] private float stepDistance = 1.8f;
     [SerializeField] private float minSpeed = 0.1f;
 
@@ -25,9 +25,8 @@ public class FootStepModule : MonoBehaviour
         Vector3 delta = transform.position - lastPosition;
         float horizontalDistance = new Vector3(delta.x, 0f, delta.z).magnitude;
 
-        float speed = horizontalDistance / Time.deltaTime;
-
-        if (speed > minSpeed && characterController.isGrounded)
+       
+        if (horizontalDistance / Time.deltaTime >= minSpeed)
         {
             distanceAccumulated += horizontalDistance;
 
@@ -37,20 +36,11 @@ public class FootStepModule : MonoBehaviour
                 distanceAccumulated = 0f;
             }
         }
-        else
-        {
-            distanceAccumulated = 0f;
-        }
-
         lastPosition = transform.position;
     }
 
     private void PlayFootstep()
-    {
-        if (footstepClips.Length == 0)
-            return;
-
-        AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
+    {       
         audioSource.PlayOneShot(clip);
     }
 }

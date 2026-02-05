@@ -13541,6 +13541,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 359224101512388274, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 417540067611019459, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: df2e1fbc2ed66b34897e661aeafcb609, type: 3}
     - target: {fileID: 2372457650149317278, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
       propertyPath: energyPerDegree
       value: 0.04
@@ -13740,6 +13748,18 @@ PrefabInstance:
     - target: {fileID: 8759618799926519543, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
       propertyPath: m_SortingFudge
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117664331577776305, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: df2e1fbc2ed66b34897e661aeafcb609, type: 3}
+    - target: {fileID: 9117664331577776305, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9117664331577776305, guid: 49a2a0395e7ec674381721607c0457c3, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37001,6 +37021,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5790698453690530751, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: df2e1fbc2ed66b34897e661aeafcb609, type: 3}
     - target: {fileID: 6326933648346414418, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
@@ -37109,6 +37133,10 @@ PrefabInstance:
       propertyPath: m_StaticShadowCaster
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8208829400506578177, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8423550514035812117, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
       propertyPath: m_StaticShadowCaster
       value: 1
@@ -37139,7 +37167,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7260845867306086056, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
       insertIndex: -1
       addedObject: {fileID: 562140921}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7260845867306086059, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1262755353}
   m_SourcePrefab: {fileID: 100100000, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
 --- !u!1 &1262755339 stripped
 GameObject:
@@ -37151,6 +37182,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7260845867306086056, guid: 1e7b62883fc8dac41a701b0daa871f65, type: 3}
   m_PrefabInstance: {fileID: 1262755338}
   m_PrefabAsset: {fileID: 0}
+--- !u!168 &1262755353
+AudioEchoFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262755339}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Delay: 250
+  m_DecayRatio: 0.5
+  m_WetMix: 0.5
+  m_DryMix: 1
 --- !u!1 &1267301058
 GameObject:
   m_ObjectHideFlags: 0
