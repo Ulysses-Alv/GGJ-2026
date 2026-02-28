@@ -1,0 +1,33 @@
+<UXML xmlns="UnityEngine.UIElements"
+      xmlns:uie="UnityEditor.UIElements">
+
+    <VisualElement class="root">        
+
+        <VisualElement name="SearchTitleContainer" class="search-title-container">
+            <Label name="LabelTitle" class="label-title title-container" text="Title"/>
+            <uie:ToolbarSearchField name="searchField" class="search-field-title title-container"/>
+        </VisualElement>
+
+        <Foldout name="FilterFoldout" text="Filter" class="filter-foldout">        
+            <VisualElement class="search-title-container">
+                <Label name="LabelAuthor" class="label-title title-container" text="Author"/>
+                <uie:ToolbarSearchField name="authorSarchField"/>
+            </VisualElement>
+            <Foldout name="categoryFoldout" text="Category filter"> 
+                <VisualElement name="categoryContainer" class="category-container" />
+            </Foldout>
+           
+            <Foldout name="statusFoldout" text="Status filter"> 
+                <VisualElement name="statusContainer" class="status-container" />
+            </Foldout>
+        </Foldout>
+
+        <VisualElement class="separator-line"/>
+
+    
+        <ScrollView name="notesScroll" class="notes-scroll">      
+        </ScrollView>
+      
+    </VisualElement>
+
+</UXML>

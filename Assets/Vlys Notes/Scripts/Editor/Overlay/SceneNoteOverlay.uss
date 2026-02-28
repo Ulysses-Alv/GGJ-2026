@@ -1,0 +1,46 @@
+.root-container {
+    padding: 5px;
+    min-width: 180px;
+}
+
+Button {
+    height: 26px;
+    margin-top: 3px;
+    border-radius: 10px;
+}
+
+.create-button {
+    height: 30px;
+    -unity-font-style: bold;
+}
+.isSelected{
+    background-color: #e24a63;
+}
+.is-not-Selected{
+    background-color: #4A90E2;
+}
+.spacer-large {
+    height: 8px;
+}
+
+.spacer-small {
+    height: 6px;
+}
+
+.master-toggle {
+    margin-top:10px;
+    -unity-font-style: bold;
+}
+
+.category-container {
+    margin-top: 4px;
+}
+.category-foldout-item{
+    margin: 5px 10px;
+}
+.category-foldout-container{
+    margin: 10px;
+    border-width: 1px;
+    border-radius: 6px;
+    border-color: #4F4F4F;
+}

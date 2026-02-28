@@ -1,0 +1,256 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eecad009d6b46e41b4ac49c740817b0, type: 3}
+  m_Name: Credits_Notes
+  m_EditorClassIdentifier: 
+  notes:
+  - position: {x: 8.193886, y: 1.4530375, z: 16.232155}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 8.122736, y: 0.5774951, z: 15.736829}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 8.251229, y: 0.5575657, z: 15.712562}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 8.06436, y: 0.55548334, z: 15.724268}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 8.565787, y: 1.0051723, z: 15.961691}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 6.9212375, y: 0.5177058, z: 18.115555}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 6.2497396, y: 1.882925, z: 18.237045}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 6.7908072, y: 1.7778039, z: 18.35499}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 6.538913, y: 0.059422255, z: 17.01419}
+    text: Esto Tiene Que modificarse
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 5.7017927, y: -0.5229032, z: 17.204348}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 5.0601587, y: -0.27301693, z: 17.07489}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: 4.94, y: 0.091982365, z: 17.241432}
+    text: New Note
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Author
+    timestampTicks: 0
+    isLocked: 0
+    comments: []
+  - position: {x: -1.2, y: -2.2, z: 9.69}
+    text: Tu mama
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 1
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070461555494853
+    isLocked: 0
+    comments:
+    - message: Hola, esto funciona
+      author: Ulysses
+      timestampTicks: 639070463681048777
+    - message: 'Text updated.
+
+'
+      author: Ulysses
+      timestampTicks: 639070465763288017
+    - message: "Category changed: Comment \u2192 Bug\r\n"
+      author: Ulysses
+      timestampTicks: 639070466068516492
+  - position: {x: 5.2710576, y: -0.066949606, z: 16.955359}
+    text: 
+    icon: {fileID: 21300000, guid: 3ea0692ee6a30a248bffe8d32f8f46ba, type: 3}
+    iconScale: 0.64
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070472346729615
+    isLocked: 0
+    comments: []
+  - position: {x: 4.5731516, y: 4.031928, z: -8.0669365}
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070493125279607
+    isLocked: 0
+    comments: []
+  - position: {x: 4.657169, y: 4.640689, z: -7.783933}
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 1
+    author: Ulysses
+    timestampTicks: 639070493179066481
+    isLocked: 0
+    comments: []
+  - position: {x: 4.1191945, y: 3.8122091, z: -8.070666}
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070493705138043
+    isLocked: 0
+    comments: []
+  - position: {x: 1.300389, y: 3.5324435, z: -8.576676}
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 1
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070502176083617
+    isLocked: 0
+    comments: []
+  - position: {x: -1.08, y: 1.0942919, z: -7.00601}
+    text: Hola
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 2
+    status: 2
+    author: Ulysses
+    timestampTicks: 639070502751764597
+    isLocked: 0
+    comments:
+    - message: Que pasa larva
+      author: Ulysses
+      timestampTicks: 639070508429655094
+    - message: "Text updated.\r\nStatus changed: Open \u2192 Resolved\r\nPosition
+        changed: (0.00, 0.00, 0.00) \u2192 (-1.08, 1.09, -7.01)\r\n"
+      author: Ulysses
+      timestampTicks: 639070524231894814
+  - position: {x: -0.22297001, y: 1.3580694, z: 5.16233}
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1.0000002
+    category: 0
+    status: 0
+    author: Ulysses
+    timestampTicks: 639070516993946701
+    isLocked: 0
+    comments: []
+  selectedIndex: 12
+  iconConfig: {fileID: 11400000, guid: d6484210a3d58dd4495945b51dcd7c76, type: 2}
+  globalIconSize: 32

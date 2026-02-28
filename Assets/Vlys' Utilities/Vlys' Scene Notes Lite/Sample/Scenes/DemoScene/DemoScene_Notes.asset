@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eecad009d6b46e41b4ac49c740817b0, type: 3}
+  m_Name: DemoScene_Notes
+  m_EditorClassIdentifier: Assembly-CSharp::Vlys.Utilities.SceneNotes.SceneNoteDatabase
+  notes:
+  - position: {x: 12, y: 2, z: 0}
+    title: Cube is not rotating
+    text: Cube is not rotating. Please Fix it
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1
+    linkedTransform: {fileID: 0}
+    category: 1
+    status: 0
+    gitBranch: main
+    author: Ulysses
+    timestampTicks: 639076315443967474
+    isLocked: 1
+    _comments:
+    - id: fe1a3f17-5c26-4275-b106-b9814b9b6ad1
+      message: "Position changed: (-1.63, 2.00, -2.09) \u2192 (12.00, 2.00, 0.00)\r\nCategory
+        changed: Comment \u2192 Bug\r\n"
+      author: Ulysses
+      authorId: d5b23bac-a0f7-4c0e-bb50-f39732ca8860
+      timestampTicks: 639076318813379868
+    id: f82ef04f-163e-47f3-9602-82375309d9c4
+    isDeleted: 0
+  - position: {x: 0, y: 2, z: 0}
+    title: Remember stop the cube on building
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1
+    linkedTransform: {fileID: 0}
+    category: 0
+    status: 0
+    gitBranch: main
+    author: Ulysses
+    timestampTicks: 639076315472738304
+    isLocked: 1
+    _comments:
+    - id: 44409629-6f9d-4ea8-8e7b-8aec98ec1536
+      message: "Position changed: (-1.63, 2.00, -2.09) \u2192 (0.00, 2.00, 0.00)\r\n"
+      author: Ulysses
+      authorId: d5b23bac-a0f7-4c0e-bb50-f39732ca8860
+      timestampTicks: 639076318797971785
+    id: a9366bbd-444e-48c8-8bb6-80deb69b1a8a
+    isDeleted: 0
+  _iconConfig: {fileID: 11400000, guid: d6484210a3d58dd4495945b51dcd7c76, type: 2}

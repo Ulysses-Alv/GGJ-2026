@@ -1,0 +1,37 @@
+<UXML xmlns="UnityEngine.UIElements"
+      xmlns:uie="UnityEditor.UIElements">
+
+    <VisualElement class="root-container">
+
+        <Button name="createButton" text="Create Note" class="create-button" />
+
+        <VisualElement class="spacer-large" />
+
+        <Foldout name="foldoutCategory" text="CATEGORIES">
+            <VisualElement class="category-foldout-container">
+
+                <Toggle name="masterToggle" text="Activate All" class="master-toggle category-foldout-item" />
+
+                <VisualElement class="spacer-small category-foldout-item" />
+
+                <VisualElement name="categoryContainer" class="category-container category-foldout-item" />
+
+            </VisualElement>
+        </Foldout>
+        <Foldout name="foldoutStatus" text="STATUS">
+            <VisualElement class="category-foldout-container">
+
+                <Toggle name="statusMasterToggle"
+                        text="Activate All"
+                        class="master-toggle category-foldout-item" />
+
+                <VisualElement class="spacer-small category-foldout-item" />
+
+                <VisualElement name="statusContainer"
+                            class="category-container category-foldout-item" />
+
+            </VisualElement>
+        </Foldout>
+
+    </VisualElement>
+</UXML>

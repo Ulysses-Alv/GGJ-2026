@@ -1,0 +1,69 @@
+<UXML xmlns="UnityEngine.UIElements"
+      xmlns:uie="UnityEditor.UIElements">
+
+    <VisualElement class="root-container">
+
+        <!-- HEADER -->
+        <VisualElement name="headerContainer" class="header-container">
+            <VisualElement name="statusContainerHeader" class="header-label">
+                <Label name="statusLabelHeader"/>           
+            </VisualElement>
+            <Label name="noteTitle" class="title-label"/>
+            <Button name="enableEditingButton" class="edit-icon-button"/>
+        </VisualElement>
+
+        <VisualElement name="topContainer" class="top-container">
+            <!-- EDIT MODE TITLE -->
+            <TextField name="titleField" label="Title" class="top-container-item"/>
+
+            <!-- READONLY DESCRIPTION (VIEW MODE) -->
+            <VisualElement name="readonlyField" class="readonly-field top-container-item">
+                <Label name="readonlyCommentLabel" class="readonly-comment"/>
+            </VisualElement>
+
+            <!-- EDIT MODE DESCRIPTION -->
+            <TextField name="textField" label="Description" multiline="true" class="top-container-item"/>
+                
+            <!-- CATEGORY -->
+            <VisualElement name="categoryField" label="Category" class="top-container-item"/>
+
+            <!-- CATEGORY -->
+            <VisualElement name="statusField" label="Status" class="status-row top-container-item"/>
+
+            <!-- LINKED OBJECT -->
+            <uie:ObjectField name="linkedTransformField" label="Linked Transform" class="top-container-item"/>
+
+            <!-- POSITION -->
+            <VisualElement name="positionField" label="Local Position" class="top-container-item"/>
+        </VisualElement>      
+
+        <!-- APPLY BUTTON -->
+        <Button name="applyChangesButton" class="apply-changes">Apply Changes</Button>
+
+        <!-- COMMENTS -->
+        <Foldout name="commentsFoldout" class="comments-foldout" text="COMMENTS">
+
+            <VisualElement name="commentsContainer" class="resizable-container">
+                <ScrollView name="commentsList"/>
+                <VisualElement name="resizeHandle" class="resize-handle"/>
+            </VisualElement>
+
+            <TextField name="newCommentField" multiline="true"/>
+            <Button name="postCommentButton">Post Comment</Button>
+        </Foldout>
+
+        <!-- METADATA -->
+        <Foldout name="metadataFoldout" text="METADATA">
+            <VisualElement name="metadataContainer" class="metadata">
+            <Label name="authorLabel" class="metadata-item"/>
+            <Label name="createdLabel" class="metadata-item"/>
+            <Label name="branchLabel" class="metadata-item"/>
+            </VisualElement>
+        </Foldout>
+
+        <!-- DELETE -->
+        <Button name="deleteNoteButton">Delete Note</Button>
+
+    </VisualElement>
+
+</UXML>

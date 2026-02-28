@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eecad009d6b46e41b4ac49c740817b0, type: 3}
+  m_Name: GameScene_Notes
+  m_EditorClassIdentifier: 
+  notes:
+  - position: {x: -0.9134669, y: 2.649807, z: 3.26902}
+    title: Remember Add SpotLight
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1
+    linkedTransform: {fileID: 0}
+    category: 0
+    status: 0
+    gitBranch: main
+    author: Ulysses
+    timestampTicks: 639076564151482380
+    isLocked: 1
+    _comments: []
+    id: 0be5c9d4-a9db-452c-95f3-3b8979dab0dc
+    isDeleted: 0
+  - position: {x: 1.0696393, y: 27.1844, z: 16.461084}
+    title: 
+    text: 
+    icon: {fileID: 0}
+    iconScale: 1
+    currentScale: 1
+    linkedTransform: {fileID: 0}
+    category: 0
+    status: 0
+    gitBranch: main
+    author: Ulysses
+    timestampTicks: 639078940417575141
+    isLocked: 0
+    _comments: []
+    id: 59a3d31c-a177-4a9b-9d7f-e3c1894cb9bd
+    isDeleted: 0
+  _iconConfig: {fileID: 11400000, guid: d6484210a3d58dd4495945b51dcd7c76, type: 2}
